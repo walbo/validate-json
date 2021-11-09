@@ -1,7 +1,8 @@
 name: 'Validate JSON Schemas'
 description: 'Find json files and validate them agains $schema'
-icon: check-circle
-color: blue
+branding:
+    icon: 'check-circle'
+    color: 'blue'
 inputs:
     files:
         description: 'Files to validate'
