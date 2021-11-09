@@ -1,0 +1,29 @@
+name: Unit tests
+on:
+    pull_request:
+    push:
+        branches:
+            - main
+            - 'releases/*'
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+
+            - name: Local schema - single file
+              uses: ./
+              with:
+                  files: tests/data/local-schema.json
+                  schema: tests/schemas/schema.json
+
+            - name: Remote schema - single file
+              uses: ./
+              with:
+                  files: tests/data/no-schema.json
+
+            - name: Remote schema - multiple files
+              uses: ./
+              with:
+                  files: tests/data/*.json

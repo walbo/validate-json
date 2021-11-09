@@ -1,0 +1,12 @@
+name: 'Validate JSON Schemas'
+description: 'Find json files and validate them agains $schema'
+inputs:
+    files:
+        description: 'Files to validate'
+        required: true
+    schema:
+        description: 'Schema location'
+        required: false
+runs:
+    using: 'node12'
+    main: 'dist/index.js'

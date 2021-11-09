@@ -1,0 +1,56 @@
+{
+	"name": "validate-json",
+	"version": "0.0.1",
+	"description": "Validate JSON Schemas",
+	"author": "Petter Walbø Johnsgård",
+	"license": "MIT",
+	"main": "index.js",
+	"keywords": [
+		"GitHub",
+		"Actions",
+		"JSON",
+		"Validator",
+		"Schema"
+	],
+	"homepage": "https://github.com/walbo/validate-json-schema#readme",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/walbo/validate-json-schema.git"
+	},
+	"bugs": {
+		"url": "https://github.com/walbo/validate-json-schema/issues"
+	},
+	"scripts": {
+		"all": "npm run lint && npm run prepare && npm run test",
+		"build": "ncc build src/index.ts -o dist --source-map --license licenses.txt",
+		"format": "prettier --write .",
+		"lint": "eslint .",
+		"prepare": "husky install"
+	},
+	"dependencies": {
+		"@actions/core": "1.6.0",
+		"ajv": "8.7.1",
+		"ajv-draft-04": "1.0.0",
+		"axios": "0.24.0",
+		"fast-glob": "3.2.7",
+		"lodash": "4.17.21",
+		"picocolors": "1.0.0"
+	},
+	"devDependencies": {
+		"@types/lodash": "4.14.176",
+		"@types/node": "16.11.7",
+		"@typescript-eslint/eslint-plugin": "5.3.1",
+		"@typescript-eslint/parser": "5.3.1",
+		"@vercel/ncc": "0.31.1",
+		"eslint": "8.2.0",
+		"eslint-config-prettier": "8.3.0",
+		"husky": "7.0.4",
+		"lint-staged": "11.2.6",
+		"prettier": "2.4.1",
+		"typescript": "4.4.4"
+	},
+	"lint-staged": {
+		"*.{js,ts}": "eslint --cache --fix",
+		"*.{js,css,md,yml,json}": "prettier --write"
+	}
+}
