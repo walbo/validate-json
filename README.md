@@ -15,5 +15,5 @@ jobs:
       - name: Validate JSON
         uses: walbo/validate-json@v0.0.1
         env:
-          file: folder/**/*.json
+          files: folder/**/*.json
 ```
