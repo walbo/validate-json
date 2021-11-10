@@ -4,7 +4,8 @@
 import { has, isEmpty, castArray } from 'lodash';
 import { debug, getInput, info, setFailed } from '@actions/core';
 import { promises as fs } from 'fs';
-import Ajv from 'ajv-draft-04';
+import AjvDraft04 from 'ajv-draft-04';
+import Ajv from 'ajv';
 import axios from 'axios';
 import fg from 'fast-glob';
 import pc from 'picocolors';
@@ -15,15 +16,22 @@ import type { ErrorObject } from 'ajv';
  */
 import { errorsText } from './utils';
 
-const ajv = new Ajv({ allErrors: true });
+const ajvOptions = { allErrors: true };
 
 async function run() {
 	try {
 		const files = getInput('files');
 		const localSchema = getInput('schema');
+		const printValidFiles = getInput('print-valid-files');
+		const useDraft04 = getInput('use-draft04');
+
+		const ajv = useDraft04
+			? new AjvDraft04(ajvOptions)
+			: new Ajv(ajvOptions);
 
 		info('Validating JSON files');
 		info(`Finding files from ${files}`);
+		info('');
 
 		const entries = await fg(castArray(files));
 		const failures: {
@@ -31,6 +39,7 @@ async function run() {
 			errors: ErrorObject[];
 		}[] = [];
 		const skippedFiles: string[] = [];
+		const validFiles: string[] = [];
 
 		const fetchedSchemas = {};
 
@@ -68,7 +77,17 @@ async function run() {
 
 			if (!valid) {
 				failures.push({ file, errors: validate.errors });
+			} else {
+				validFiles.push(file);
 			}
+		}
+
+		if (printValidFiles && !isEmpty(validFiles)) {
+			info('✅ Valid files:');
+			skippedFiles.forEach((file) => {
+				info(`    ${file}`);
+			});
+			info('');
 		}
 
 		if (!isEmpty(skippedFiles)) {

@@ -10,6 +10,14 @@ inputs:
     schema:
         description: 'Schema location'
         required: false
+    use-draft04:
+        description: 'If the schema requires draft04 set this to trough'
+        default: false
+        required: false
+    print-valid-files:
+        description: 'Print valid file names to console'
+        default: false
+        required: false
 runs:
     using: 'node12'
     main: 'dist/index.js'

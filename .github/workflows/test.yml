@@ -12,18 +12,39 @@ jobs:
         steps:
             - uses: actions/checkout@v2
 
-            - name: Local schema - single file
+            - name: Local schema (draft04) - single file
               uses: ./
               with:
-                  files: tests/data/local-schema.json
-                  schema: tests/schemas/schema.json
+                  files: tests/data04/local-schema.json
+                  schema: tests/schemas/schema04.json
+                  use-draft04: true
 
-            - name: Remote schema - single file
+            - name: Remote schema (draft04) - single file
               uses: ./
               with:
-                  files: tests/data/no-schema.json
+                  files: tests/data04/no-schema.json
+                  use-draft04: true
 
-            - name: Remote schema - multiple files
+            - name: Remote schema (draft04) - multiple files
               uses: ./
               with:
-                  files: tests/data/*.json
+                  files: tests/data04/*.json
+                  print-valid-files: true
+                  use-draft04: true
+
+            - name: Local schema (draft06) - single file
+              uses: ./
+              with:
+                  files: tests/data06/local-schema.json
+                  schema: tests/schemas/schema06.json
+
+            - name: Remote schema (draft06) - single file
+              uses: ./
+              with:
+                  files: tests/data06/no-schema.json
+
+            - name: Remote schema (draft06) - multiple files
+              uses: ./
+              with:
+                  files: tests/data06/*.json
+                  print-valid-files: true
