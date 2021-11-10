@@ -10,9 +10,9 @@ inputs:
     schema:
         description: 'Schema location'
         required: false
-    use-draft04:
-        description: 'If the schema requires draft04 set this to trough'
-        default: false
+    schema-version:
+        description: 'Choose schema version'
+        default: draft-04
         required: false
     print-valid-files:
         description: 'Print valid file names to console'

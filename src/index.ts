@@ -6,6 +6,7 @@ import { debug, getInput, info, setFailed } from '@actions/core';
 import { promises as fs } from 'fs';
 import AjvDraft04 from 'ajv-draft-04';
 import Ajv from 'ajv';
+import draft6MetaSchema from 'ajv/dist/refs/json-schema-draft-06.json';
 import axios from 'axios';
 import fg from 'fast-glob';
 import pc from 'picocolors';
@@ -16,18 +17,36 @@ import type { ErrorObject } from 'ajv';
  */
 import { errorsText } from './utils';
 
-const ajvOptions = { allErrors: true };
+function getAjv(version) {
+	const ajvOptions = { allErrors: true };
+
+	switch (version) {
+		case 'draft-04':
+			return new AjvDraft04(ajvOptions);
+		case 'draft-06': {
+			const ajv = new Ajv();
+			ajv.addMetaSchema(draft6MetaSchema);
+			return ajv;
+		}
+		case 'draft-07':
+			return new Ajv(ajvOptions);
+		default:
+			return false;
+	}
+}
 
 async function run() {
 	try {
 		const files = getInput('files');
 		const localSchema = getInput('schema');
 		const printValidFiles = getInput('print-valid-files');
-		const useDraft04 = getInput('use-draft04');
+		const schemaVersion = getInput('schema-version');
 
-		const ajv = useDraft04
-			? new AjvDraft04(ajvOptions)
-			: new Ajv(ajvOptions);
+		const ajv = getAjv(schemaVersion);
+
+		if (!ajv) {
+			throw new Error('Unsupported schema');
+		}
 
 		info('Validating JSON files');
 		info(`Finding files from ${files}`);
