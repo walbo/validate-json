@@ -103,7 +103,7 @@ async function run() {
 
 		if (printValidFiles && !isEmpty(validFiles)) {
 			info('✅ Valid files:');
-			skippedFiles.forEach((file) => {
+			validFiles.forEach((file) => {
 				info(`    ${file}`);
 			});
 			info('');
