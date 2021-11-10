@@ -16,4 +16,7 @@ jobs:
         uses: walbo/validate-json@v0.0.1
         env:
           files: folder/**/*.json
+          schema: schemas/schema.json
+          schema-version: draft-04
+          print-valid-files: true
 ```
