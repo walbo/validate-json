@@ -2,7 +2,13 @@
  * External dependencies
  */
 import { has, isEmpty, castArray } from 'lodash';
-import { debug, getInput, info, setFailed } from '@actions/core';
+import {
+	debug,
+	getInput,
+	getMultilineInput,
+	info,
+	setFailed,
+} from '@actions/core';
 import { promises as fs } from 'fs';
 import AjvDraft04 from 'ajv-draft-04';
 import Ajv from 'ajv';
@@ -37,7 +43,7 @@ function getAjv(version) {
 
 async function run() {
 	try {
-		const files = getInput('files');
+		const files = getMultilineInput('files');
 		const localSchema = getInput('schema');
 		const printValidFiles = getInput('print-valid-files');
 		const schemaVersion = getInput('schema-version');
