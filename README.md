@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Validate JSON
-        uses: walbo/validate-json@v0.0.1
+        uses: walbo/validate-json@v0.0.2
         env:
           files: folder/**/*.json
           schema: schemas/schema.json
