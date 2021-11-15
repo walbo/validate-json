@@ -15,54 +15,46 @@ jobs:
             - name: Local schema (draft04) - single file
               uses: ./
               with:
-                  files:
-                      - tests/data04/local-schema.json
+                  files: tests/data04/local-schema.json
                   schema: tests/schemas/schema04.json
                   schema-version: draft-04
 
             - name: Remote schema (draft04) - single file
               uses: ./
               with:
-                  files:
-                      - tests/data04/no-schema.json
+                  files: tests/data04/no-schema.json
                   schema-version: draft-04
 
             - name: Remote schema (draft04) - multiple files
               uses: ./
               with:
-                  files:
-                      - tests/data04/*.json
+                  files: tests/data04/*.json
                   print-valid-files: true
                   schema-version: draft-04
 
-            - name: Remote schema (draft04) - multiline files
+            - name: Remote schema (draft04) - array files
               uses: ./
               with:
-                  files:
-                      - tests/data04/block.json
-                      - tests/data04/no-schema.json
+                  files: [tests/data04/block.json, tests/data04/no-schema.json]
                   print-valid-files: true
                   schema-version: draft-04
 
             - name: Local schema (draft06) - single file
               uses: ./
               with:
-                  files:
-                      - tests/data06/local-schema.json
+                  files: tests/data06/local-schema.json
                   schema: tests/schemas/schema06.json
                   schema-version: draft-06
 
             - name: Remote schema (draft06) - single file
               uses: ./
               with:
-                  files:
-                      - tests/data06/no-schema.json
+                  files: tests/data06/no-schema.json
                   schema-version: draft-06
 
             - name: Remote schema (draft06) - multiple files
               uses: ./
               with:
-                  files:
-                      - tests/data06/*.json
+                  files: tests/data06/*.json
                   schema-version: draft-06
                   print-valid-files: true
