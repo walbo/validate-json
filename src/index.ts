@@ -18,7 +18,11 @@ import type { ErrorObject } from 'ajv';
 import { errorsText } from './utils';
 
 function getAjv(version) {
-	const ajvOptions = { allErrors: true, allowMatchingProperties: true };
+	const ajvOptions = {
+		allErrors: true,
+		allowMatchingProperties: true,
+		strict: false,
+	};
 
 	switch (version) {
 		case 'draft-04':
