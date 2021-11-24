@@ -17,6 +17,14 @@ import type { ErrorObject } from 'ajv';
  */
 import { errorsText } from './utils';
 
+function isTrueSet(value: string | boolean): boolean {
+	if (typeof value === 'string') {
+		return value.toLowerCase() === 'true';
+	}
+
+	return value;
+}
+
 function getAjv(version, options = {}) {
 	const ajvOptions = {
 		...options,
@@ -42,9 +50,11 @@ async function run() {
 	try {
 		const files = getInput('files');
 		const localSchema = getInput('schema');
-		const printValidFiles = getInput('print-valid-files');
+		const printValidFiles = isTrueSet(getInput('print-valid-files'));
 		const schemaVersion = getInput('schema-version');
-		const allowMatchingProperties = getInput('allow-matching-properties');
+		const allowMatchingProperties = isTrueSet(
+			getInput('allow-matching-properties'),
+		);
 
 		const ajv = getAjv(schemaVersion, { allowMatchingProperties });
 
