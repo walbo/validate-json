@@ -17,6 +17,13 @@ jobs:
         env:
           files: folder/**/*.json
           schema: schemas/schema.json
-          schema-version: draft-04
+
+          # optional, default: draft-04
+          schema-version: draft-06
+
+          # optional, default: false
           print-valid-files: true
+
+          # optional, default: false
+          c: true
 ```

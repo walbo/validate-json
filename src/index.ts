@@ -17,10 +17,10 @@ import type { ErrorObject } from 'ajv';
  */
 import { errorsText } from './utils';
 
-function getAjv(version) {
+function getAjv(version, options = {}) {
 	const ajvOptions = {
+		...options,
 		allErrors: true,
-		allowMatchingProperties: true,
 	};
 
 	switch (version) {
@@ -44,8 +44,9 @@ async function run() {
 		const localSchema = getInput('schema');
 		const printValidFiles = getInput('print-valid-files');
 		const schemaVersion = getInput('schema-version');
+		const allowMatchingProperties = getInput('allow-matching-properties');
 
-		const ajv = getAjv(schemaVersion);
+		const ajv = getAjv(schemaVersion, { allowMatchingProperties });
 
 		if (!ajv) {
 			throw new Error('Unsupported schema');
