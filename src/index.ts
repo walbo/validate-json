@@ -21,7 +21,6 @@ function getAjv(version) {
 	const ajvOptions = {
 		allErrors: true,
 		allowMatchingProperties: true,
-		strict: false,
 	};
 
 	switch (version) {
