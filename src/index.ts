@@ -17,8 +17,19 @@ import type { ErrorObject } from 'ajv';
  */
 import { errorsText } from './utils';
 
-function getAjv(version) {
-	const ajvOptions = { allErrors: true };
+function isTrueSet(value: string | boolean): boolean {
+	if (typeof value === 'string') {
+		return value.toLowerCase() === 'true';
+	}
+
+	return value;
+}
+
+function getAjv(version, options = {}) {
+	const ajvOptions = {
+		...options,
+		allErrors: true,
+	};
 
 	switch (version) {
 		case 'draft-04':
@@ -39,10 +50,13 @@ async function run() {
 	try {
 		const files = getInput('files');
 		const localSchema = getInput('schema');
-		const printValidFiles = getInput('print-valid-files');
+		const printValidFiles = isTrueSet(getInput('print-valid-files'));
 		const schemaVersion = getInput('schema-version');
+		const allowMatchingProperties = isTrueSet(
+			getInput('allow-matching-properties'),
+		);
 
-		const ajv = getAjv(schemaVersion);
+		const ajv = getAjv(schemaVersion, { allowMatchingProperties });
 
 		if (!ajv) {
 			throw new Error('Unsupported schema');

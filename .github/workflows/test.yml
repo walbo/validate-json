@@ -31,6 +31,7 @@ jobs:
                   files: tests/data04/*.json
                   print-valid-files: true
                   schema-version: draft-04
+                  allow-matching-properties: true
 
             - name: Local schema (draft06) - single file
               uses: ./

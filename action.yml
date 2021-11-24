@@ -18,6 +18,10 @@ inputs:
         description: 'Print valid file names to console'
         default: false
         required: false
+    allow-matching-properties:
+        description: 'Pass true to allow overlap between "properties" and "patternProperties"'
+        default: false
+        required: false
 runs:
     using: 'node12'
     main: 'dist/index.js'
