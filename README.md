@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Validate JSON
-        uses: walbo/validate-json@v0.0.2
+        uses: walbo/validate-json@v0.0.3
         env:
           files: folder/**/*.json
           schema: schemas/schema.json
@@ -25,5 +25,5 @@ jobs:
           print-valid-files: true
 
           # optional, default: false
-          c: true
+          allow-matching-properties: true
 ```
