@@ -18,6 +18,10 @@ inputs:
         description: 'Print valid file names to console'
         default: false
         required: false
+    fail-on-missing-schema:
+        description: 'Fail on missing schema'
+        default: false
+        required: false
     allow-matching-properties:
         description: 'Pass true to allow overlap between "properties" and "patternProperties"'
         default: false

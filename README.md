@@ -26,4 +26,7 @@ jobs:
 
           # optional, default: false
           allow-matching-properties: true
+
+          #optional, default: false
+          fail-on-missing-schema: true
 ```
