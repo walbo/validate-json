@@ -18,6 +18,7 @@ jobs:
                   files: tests/data04/local-schema.json
                   schema: tests/schemas/schema04.json
                   schema-version: draft-04
+                  fail-on-missing-schema: true
 
             - name: Remote schema (draft04) - single file
               uses: ./

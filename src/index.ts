@@ -51,6 +51,9 @@ async function run() {
 		const files = getInput('files');
 		const localSchema = getInput('schema');
 		const printValidFiles = isTrueSet(getInput('print-valid-files'));
+		const failOnMissingSchema = isTrueSet(
+			getInput('fail-on-missing-schema'),
+		);
 		const schemaVersion = getInput('schema-version');
 		const allowMatchingProperties = isTrueSet(
 			getInput('allow-matching-properties'),
@@ -126,9 +129,19 @@ async function run() {
 		if (!isEmpty(skippedFiles)) {
 			skippedFiles.forEach((file) => {
 				info(pc.underline(`/${file}`));
-				info(`    ${pc.yellow('warning')}  No schema found`);
+				info(
+					`    ${
+						failOnMissingSchema
+							? pc.red('error')
+							: pc.yellow('warning')
+					}  No schema found`,
+				);
 				info('');
 			});
+
+			if (failOnMissingSchema) {
+				setFailed(`${skippedFiles.length} files are missing schema`);
+			}
 		}
 
 		if (!isEmpty(failures)) {
