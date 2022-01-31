@@ -25,7 +25,8 @@
 		"build": "ncc build src/index.ts -o dist --source-map --license licenses.txt --minify",
 		"format": "prettier --write .",
 		"lint": "eslint .",
-		"prepare": "husky install"
+		"prepare": "husky install",
+		"tsc": "tsc --pretty --noEmit"
 	},
 	"dependencies": {
 		"@actions/core": "1.6.0",
