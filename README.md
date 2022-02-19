@@ -1,6 +1,6 @@
 # Validate JSON Action
 
-Validate JSON files agains their `$schema`.
+Validate JSON files against their `$schema`.
 
 Usage:
 
@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Validate JSON
-        uses: walbo/validate-json@v0.0.4
+        uses: walbo/validate-json@v1.0.0
         env:
           files: folder/**/*.json
           schema: schemas/schema.json

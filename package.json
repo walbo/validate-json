@@ -1,6 +1,6 @@
 {
 	"name": "validate-json",
-	"version": "0.0.4",
+	"version": "1.0.0",
 	"description": "Validate JSON Schemas",
 	"author": "Petter Walbø Johnsgård",
 	"license": "MIT",
