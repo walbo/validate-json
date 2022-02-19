@@ -16,6 +16,8 @@ jobs:
         uses: walbo/validate-json@v1.0.1
         with:
           files: folder/**/*.json
+
+          # optional, defaults to `$schema` in your JSON file
           schema: schemas/schema.json
 
           # optional, default: draft-04
@@ -27,6 +29,9 @@ jobs:
           # optional, default: false
           allow-matching-properties: true
 
-          #optional, default: false
+          # optional, default: false
           fail-on-missing-schema: true
+
+          # optional, default: true
+          strict: true
 ```

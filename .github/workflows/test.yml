@@ -32,6 +32,7 @@ jobs:
                   print-valid-files: true
                   schema-version: draft-04
                   allow-matching-properties: true
+                  strict: false
 
             - name: Local schema (draft06) - single file
               uses: ./
