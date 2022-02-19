@@ -58,8 +58,9 @@ async function run() {
 		const allowMatchingProperties = isTrueSet(
 			getInput('allow-matching-properties'),
 		);
+		const strict = isTrueSet(getInput('strict'));
 
-		const ajv = getAjv(schemaVersion, { allowMatchingProperties });
+		const ajv = getAjv(schemaVersion, { allowMatchingProperties, strict });
 
 		if (!ajv) {
 			throw new Error('Unsupported schema');

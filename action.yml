@@ -26,6 +26,10 @@ inputs:
         description: 'Pass true to allow overlap between "properties" and "patternProperties"'
         default: false
         required: false
+    strict:
+        description: 'Pass false to disable strict validation'
+        default: false
+        required: false
 runs:
     using: 'node12'
     main: 'dist/index.js'
