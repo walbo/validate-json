@@ -69,7 +69,9 @@ async function run() {
 		info(`Finding files from ${files}`);
 		info('');
 
-		const entries = await fg(castArray(files));
+		const entries = await fg(
+			castArray(files.split(',').map((f) => f.trim())),
+		);
 		const failures: {
 			file: string;
 			errors: ErrorObject[];
