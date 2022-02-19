@@ -14,7 +14,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Validate JSON
         uses: walbo/validate-json@v1.0.0
-        env:
+        with:
           files: folder/**/*.json
           schema: schemas/schema.json
 
