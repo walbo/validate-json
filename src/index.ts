@@ -58,7 +58,7 @@ async function run() {
 		const allowMatchingProperties = isTrueSet(
 			getInput('allow-matching-properties'),
 		);
-		const allowMatchingProperties = isTrueSet(getInput('strict'));
+		const strict = isTrueSet(getInput('strict'));
 
 		const ajv = getAjv(schemaVersion, { allowMatchingProperties, strict });
 
