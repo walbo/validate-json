@@ -27,11 +27,14 @@ jobs:
           print-valid-files: true
 
           # optional, default: false
-          allow-matching-properties: true
-
-          # optional, default: false
           fail-on-missing-schema: true
 
           # optional, default: true
           strict: true
+
+          # optional, default: false
+          allow-matching-properties: true
+
+          # optional, default: true
+          allow-union-types: false
 ```
