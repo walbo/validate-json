@@ -26,6 +26,10 @@ inputs:
         description: 'Pass true to allow overlap between "properties" and "patternProperties"'
         default: false
         required: false
+    allow-union-types:
+        description: 'With strictTypes option "type" keywords with multiple types (other than with "null") are prohibited.'
+        default: true
+        required: false
     strict:
         description: 'Pass false to disable strict validation'
         default: false
