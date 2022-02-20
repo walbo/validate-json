@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Validate JSON
-        uses: walbo/validate-json@v1.0.3
+        uses: walbo/validate-json@v1.0.4
         with:
           files: folder/**/*.json
 
@@ -21,20 +21,20 @@ jobs:
           schema: schemas/schema.json
 
           # optional, default: draft-04
-          schema-version: draft-06
+          schema-version: draft-04
 
           # optional, default: false
-          print-valid-files: true
+          print-valid-files: false
 
           # optional, default: false
-          fail-on-missing-schema: true
+          fail-on-missing-schema: false
 
           # optional, default: true
           strict: true
 
           # optional, default: false
-          allow-matching-properties: true
+          allow-matching-properties: false
 
           # optional, default: true
-          allow-union-types: false
+          allow-union-types: true
 ```

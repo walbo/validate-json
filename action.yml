@@ -32,7 +32,7 @@ inputs:
         required: false
     strict:
         description: 'Pass false to disable strict validation'
-        default: false
+        default: true
         required: false
 runs:
     using: 'node12'
