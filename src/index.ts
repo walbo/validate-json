@@ -4,6 +4,7 @@
 import { has, isEmpty, castArray } from 'lodash';
 import { debug, getInput, info, setFailed } from '@actions/core';
 import { promises as fs } from 'fs';
+import * as path from 'path';
 import AjvDraft04 from 'ajv-draft-04';
 import Ajv from 'ajv';
 import draft6MetaSchema from 'ajv/dist/refs/json-schema-draft-06.json';
@@ -15,14 +16,14 @@ import type { ErrorObject } from 'ajv';
 /**
  * Internal dependencies
  */
-import { errorsText } from './utils';
+import { errorsText, isValidUrl } from './utils';
 
 function isTrueSet(value: string | boolean): boolean {
 	if (typeof value === 'string') {
 		return value.toLowerCase() === 'true';
 	}
 
-	return value;
+	return value; 
 }
 
 function getAjv(version, options = {}) {
@@ -105,9 +106,19 @@ async function run() {
 				debug(`\nFound $schema in: ${file}`);
 
 				if (!has(fetchedSchemas, schemaUrl)) {
-					debug(`Fetching: ${schemaUrl}`);
-					const schemaResponse = await axios.get(schemaUrl);
-					fetchedSchemas[schemaUrl] = schemaResponse.data;
+
+					if (isValidUrl(schemaUrl)) {
+						debug(`Fetching: ${schemaUrl}`);
+						const schemaResponse = await axios.get(schemaUrl);
+						fetchedSchemas[schemaUrl] = schemaResponse.data;
+					} else {
+						debug(`Reading File: ${schemaUrl}`);
+						const fileDir = path.dirname(file);
+						const fullSchemaPath = path.join(fileDir,schemaUrl)
+						const schemaFile = await fs.readFile(fullSchemaPath, 'utf8');
+						fetchedSchemas[schemaUrl] = JSON.parse(schemaFile);
+					}
+					
 				}
 
 				schema = fetchedSchemas[schemaUrl];

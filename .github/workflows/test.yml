@@ -12,15 +12,6 @@ jobs:
         steps:
             - uses: actions/checkout@v3
 
-            - name: Path referenced schemas - multiple files
-              uses: ./
-              with:
-                  files: tests/path-ref/*.json
-                  print-valid-files: true
-                  schema-version: draft-04
-                  allow-matching-properties: true
-                  strict: false
-
             - name: Local schema (draft04) - single file
               uses: ./
               with:
@@ -62,3 +53,12 @@ jobs:
                   files: tests/data06/*.json
                   schema-version: draft-06
                   print-valid-files: true
+
+            - name: Path schemas - multiple files
+              uses: ./
+              with:
+                  files: tests/path-schema/*.json
+                  print-valid-files: true
+                  schema-version: draft-04
+                  allow-matching-properties: true
+                  strict: false
