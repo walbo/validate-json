@@ -1,0 +1,14 @@
+{
+	"$schema": "../schemas/block.json",
+	"version": "1.0.0",
+	"apiVersion": 2,
+	"title": "Example",
+	"description": "Example block",
+	"name": "core/example",
+	"category": "design",
+	"supports": {
+		"html": false
+	},
+	"editorScript": "file:index.js",
+	"style": "file:style.css"
+}

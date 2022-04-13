@@ -1,0 +1,23 @@
+{
+	"$schema": "../schemas/theme.json",
+	"version": 2,
+	"settings": {
+		"layout": {
+			"contentSize": "48rem",
+			"wideSize": "75rem"
+		}
+	},
+	"styles": {
+		"color": {
+			"background": "#fff",
+			"text": "#333"
+		},
+		"elements": {
+			"link": {
+				"color": {
+					"text": "#ccc"
+				}
+			}
+		}
+	}
+}
