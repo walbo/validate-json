@@ -53,3 +53,12 @@ jobs:
                   files: tests/data06/*.json
                   schema-version: draft-06
                   print-valid-files: true
+
+            - name: Path schemas - multiple files
+              uses: ./
+              with:
+                  files: tests/path-schema/*.json
+                  print-valid-files: true
+                  schema-version: draft-04
+                  allow-matching-properties: true
+                  strict: false
