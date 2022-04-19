@@ -23,6 +23,17 @@ jobs:
             - name: Npm install
               run: npm ci
 
+            - name: Format Code
+              run: npm run format
+
+            - name: Compare the expected and actual content after formatting files
+              run: |
+                  if [ "$(git diff | wc -l)" -gt "0" ]; then
+                    echo "Detected changes after formatting files. Please format code with Prettier. See changed files below:"
+                    git diff --name-only
+                    exit 1
+                  fi
+
             - name: Lint JavaScript
               run: npm run lint
 
