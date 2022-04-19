@@ -11,9 +11,9 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Validate JSON
-        uses: walbo/validate-json@v1.0.4
+        uses: walbo/validate-json@v1.1.0
         with:
           files: folder/**/*.json
 
