@@ -24,13 +24,12 @@ export function errorsText(errors: ErrorObject[] | null): string {
 		);
 }
 
-export function isValidUrl(string: string) :boolean {
-  
-  try {
-    new URL(string);
-  } catch (_) {
-    return false;  
-  }
+export function isValidUrl(string: string): boolean {
+	try {
+		new URL(string);
+	} catch (_) {
+		return false;
+	}
 
-  return true;
+	return true;
 }

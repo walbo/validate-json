@@ -23,7 +23,7 @@ function isTrueSet(value: string | boolean): boolean {
 		return value.toLowerCase() === 'true';
 	}
 
-	return value; 
+	return value;
 }
 
 function getAjv(version, options = {}) {
@@ -106,7 +106,6 @@ async function run() {
 				debug(`\nFound $schema in: ${file}`);
 
 				if (!has(fetchedSchemas, schemaUrl)) {
-
 					if (isValidUrl(schemaUrl)) {
 						debug(`Fetching: ${schemaUrl}`);
 						const schemaResponse = await axios.get(schemaUrl);
@@ -114,11 +113,13 @@ async function run() {
 					} else {
 						debug(`Reading File: ${schemaUrl}`);
 						const fileDir = path.dirname(file);
-						const fullSchemaPath = path.join(fileDir,schemaUrl)
-						const schemaFile = await fs.readFile(fullSchemaPath, 'utf8');
+						const fullSchemaPath = path.join(fileDir, schemaUrl);
+						const schemaFile = await fs.readFile(
+							fullSchemaPath,
+							'utf8',
+						);
 						fetchedSchemas[schemaUrl] = JSON.parse(schemaFile);
 					}
-					
 				}
 
 				schema = fetchedSchemas[schemaUrl];
